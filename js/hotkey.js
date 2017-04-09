@@ -56,4 +56,4 @@ var Hotkey = function(){
   }
 }
 global.hotkey = new Hotkey();
-})(window);
+})(this);
