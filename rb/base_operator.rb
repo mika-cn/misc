@@ -57,6 +57,7 @@ module Operator
     # add runtime error
     #
     def add_rerr error
+      raise error if @raise_mode
       @runtime_errors ||= []
       @runtime_errors << error
     end
