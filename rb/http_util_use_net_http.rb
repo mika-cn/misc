@@ -24,7 +24,7 @@ module HttpUtil
      when 'multipart/form-data'
        boundary = Boundary.create
        req.content_type = "#{req.content_type}; boundary=#{boundary}"
-       req.body = Multipart.new(params: params, boundary: boundary).to_req_body
+       req.body = Multipart.new(params: body, boundary: boundary).to_req_body
      end
      req = (yield req) if block_given?
     http = get_http(uri)
@@ -79,7 +79,7 @@ module HttpUtil
           create_regular_field(@stream, k, v)
         end
         @stream.write(EOL + b)
-        @stream.write(EOL) if last_index == idx
+        @stream.write(EOL) if last_index != idx
       end
       @stream.write('--')
       @stream.write(EOL)
